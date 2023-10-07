@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -5,5 +9,5 @@
 }
 
 body {
-  padding-inline: 48px;
+  padding-inline: 24px;
 }
