@@ -3,8 +3,12 @@ import { Creature, CreatureConstructorArgs } from "./Creature"
 const HEAL_PERCENT = 30
 
 export class Player extends Creature {
-  readonly _maxHp: number // For heal() method
-  private healAmount = 4
+  private _maxHp: number // For heal() method
+  private _healAmount = 4
+
+  get healAmount() {
+    return this._healAmount
+  }
 
   constructor({ hp, ...args }: CreatureConstructorArgs) {
     super({ hp, ...args })
@@ -14,7 +18,7 @@ export class Player extends Creature {
 
   // returns true if able
   public isAbleToHeal = () => {
-    if (this.healAmount > 0 && !this.isDead()) return true
+    if (this._healAmount > 0 && !this.isDead()) return true
 
     return false
   }
@@ -27,8 +31,6 @@ export class Player extends Creature {
     if (this._hp + healPower > this._maxHp) this._hp = this._maxHp
     else this._hp += healPower
 
-    this.healAmount -= 1
+    this._healAmount -= 1
   }
-
-  public toString = (): string => `Player: ${super.toString()}`
 }

@@ -14,10 +14,23 @@ export interface CreatureConstructorArgs {
 }
 
 export class Creature {
-  readonly _attack: number // 1-30
-  readonly _defense: number // 1-30
-  readonly _damage: Damage // M - N (1-6)
+  private _attack: number // 1-30
+  private _defense: number // 1-30
+  private _damage: Damage // M - N (1-6)
   protected _hp: number // 0 - N
+
+  get attack() {
+    return this._attack
+  }
+  get defense() {
+    return this._defense
+  }
+  get damage() {
+    return this._damage
+  }
+  get hp() {
+    return this._hp
+  }
 
   constructor({ attack, defense, damage, hp }: CreatureConstructorArgs) {
     this._attack = attack
@@ -48,10 +61,6 @@ export class Creature {
 
   // returns true if dead
   public isDead = (): boolean => {
-    return this._hp < 0
-  }
-
-  public toString = (): string => {
-    return `Creature has this parameters: \nAttack: ${this._attack}\nDefense: ${this._defense}\nDamage: ${this._damage.min}-${this._damage.max}\nHealth points: ${this._hp}`
+    return this._hp <= 0
   }
 }
